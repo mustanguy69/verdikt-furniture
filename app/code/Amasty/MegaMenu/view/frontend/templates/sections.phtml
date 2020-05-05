@@ -1,0 +1,62 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_MegaMenu
+ */
+?>
+<?php
+
+/**
+ * General template for displaying group of blocks devided into sections
+ */
+
+/** @var  \Magento\Framework\View\Element\Template $block */
+$group = $block->getGroupName();
+$groupCss = $block->getGroupCss();
+$groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"tabs":{"openedState":"active"}}';
+$isHamburger = $block->getHelperBlock()->isHamburgerEnabled();
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames($group, 'getChildHtml')): ?>
+    <div class="ammenu-nav-sections nav-sections<?= $block->escapeHtml($isHamburger ? ' -hamburger' : '') ?>"
+         data-mage-init='{"amastyMenuOpenType":{
+            "openType": "<?= $block->escapeHtml($block->getHelperBlock()->getMobileTemplateClass()) ?>",
+            "hamburgerStatus": "<?= (int)$isHamburger ?>"
+            }}'
+         data-ammenu-js='nav-sections'>
+        <?php $layout = $block->getLayout(); ?>
+        <div class="ammenu-tabs-container"
+             data-ammenu-js="tabs-container"
+             data-mage-init='<?= $block->escapeHtml($groupBehavior); ?>'>
+            <?php foreach ($detailedInfoGroup as $name): ?>
+                <?php
+                $html = $layout->renderElement($name);
+                if (!trim($html) && ($block->getUseForce() != true)) {
+                    continue;
+                }
+                $alias = $layout->getElementAlias($name);
+                $label = $block->getChildData($alias, 'title');
+                ?>
+                <?php if (!$isHamburger): ?>
+                    <div class="ammenu-title" data-role="collapsible">
+                        <a class="ammenu-link"
+                           title="<?= $block->escapeHtml($label) ?>"
+                           data-toggle="switch"
+                           href="#<?= $block->escapeUrl($alias) ?>">
+                            <?= $block->escapeHtml($label) ?>
+                        </a>
+                    </div>
+                    <div class="ammenu-content" id="<?= $block->escapeHtml($alias) ?>" data-role="content">
+                        <?= /* @noEscape*/ $html ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($isHamburger): ?>
+                    <div id="<?= $block->escapeHtml($alias) ?>" >
+                        <?= /* @noEscape */ $html ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach;?>
+        </div>
+    </div>
+    <div class="ammenu-menu-overlay" data-ammenu-js="menu-overlay"></div>
+<?php endif; ?>

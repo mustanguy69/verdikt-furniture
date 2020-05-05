@@ -1,0 +1,23 @@
+<div id="store-selector-popup">
+  <div class="bg-overlay"></div>
+  <div class="popup-content">
+    <h2>LOCATE YOUR STORE TO VIEW PRICES</h2>
+    <p>Enter your postcode and find your nearest Furniture One showroom for localised recommended retail prices</p>
+    <form>
+      <input type="number" name="postcode" placeholder="enter postcode" />
+      <button class="f1-button" disabled="disabled">Show prices</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+  require(['jquery'], function($) {
+    $('.show-price-link').click(function(){
+      $('#store-selector-popup').show();
+      return false;
+    });
+    $('#store-selector-popup .bg-overlay').click(function(){
+      $('#store-selector-popup').hide();
+    });
+  });
+</script>
+<a href="#" data-post='{"action":"http://furniture.stage.verdikt.com.au/stores/store/redirect/","data":{"___store":"default","___from_store":"default"}}'>back to default store</a>

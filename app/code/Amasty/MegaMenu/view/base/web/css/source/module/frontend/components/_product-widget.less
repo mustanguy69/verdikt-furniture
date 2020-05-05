@@ -1,0 +1,87 @@
+//
+//  Amasty MegaMenu Product Widget
+//  _________________________
+
+//
+//  Common
+//  --------------------------
+
+& when (@media-common = true) {
+    .ammenu-nav-sections .ammenu-product-list,
+    .ammenu-submenu-container.ammenu-submenu .ammenu-product-list {
+        &.slider .slick-slide {
+            vertical-align: top;
+        }
+
+        &.slider .product-items {
+            & {
+                opacity: 1;
+                transition: opacity .3s ease;
+            }
+
+            &:not(.slick-initialized) {
+                opacity: 0;
+            }
+        }
+
+        &.grid {
+            margin: 0;
+            padding: 0 @ammenu__indent;
+        }
+
+        .action.tocart .-nocolor {
+            color: @ammenu__color__white !important;
+        }
+
+        .products-grid .product-item-info:hover *:not(.-nocolor):not(.swatch-option),
+        .products-grid .product-item-info.active *:not(.-nocolor):not(.swatch-option) {
+            color: #333 !important;
+        }
+
+        .action.towishlist {
+            cursor: pointer;
+        }
+
+        .product-item-actions {
+            margin-top: 10px;
+        }
+
+        .actions-secondary .action {
+            & {
+                opacity: .7;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    // Override Magento styles
+    .ammenu-submenu-container.ammenu-submenu .block-products-list {
+        padding-top: @ammenu__indent__xl;
+    }
+
+    .ammenu-submenu-container.ammenu-submenu.-auto .block.widget.grid {
+        & {
+            box-sizing: border-box;
+            width: calc(~"(120px + @{ammenu__indent} * 2) * 5"); // Magento product grid container width, inherited of product item
+        }
+
+        .product-items {
+            margin: 0 -@ammenu__indent;
+        }
+
+        .product-item {
+            & {
+                margin: 0 @ammenu__indent;
+                width: 120px;
+            }
+
+            &:nth-child(2n+1) {
+                margin: 0 @ammenu__indent;
+            }
+        }
+    }
+    // END Override Magento styles
+}

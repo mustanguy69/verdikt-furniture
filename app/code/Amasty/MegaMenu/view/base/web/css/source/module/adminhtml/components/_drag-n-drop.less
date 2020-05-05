@@ -1,0 +1,41 @@
+//
+//  Drag-n-Drop component
+//  _________________________
+
+//
+//  Common
+//  --------------------------
+
+& when (@media-common = true) {
+    .ammenu-items-tree {
+	& {
+	    list-style: none;
+	    font-size: 20px;
+	    
+	    .am-flex(none, center, wrap);
+	}
+	
+	.ammenu-item {
+	    & {
+		flex-basis: 200px;
+		box-sizing: border-box;
+		margin-bottom: @ammenu__indent__xl;
+		padding: 35px @ammenu__indent__l * 2;
+		border: 1px dashed #ccc;
+		border-radius: 4px;
+		background: #fff;
+		white-space: nowrap;
+		cursor: pointer;
+	    }
+	    
+	    &:hover {
+		border-color: #a0a0a0;
+		box-shadow: 0 2px 4px rgba(32, 77, 112, .16);
+	    }
+	    
+	    &:not(:last-child) {
+		margin-right: @ammenu__indent__xl;
+	    }
+	}
+    }
+}

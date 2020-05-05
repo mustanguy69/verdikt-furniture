@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Template for displaying new products widget
+ *
+ * @var $block \Verdikt\ProductFilter\Block\ProductFilter
+ */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$currentproduct = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$category_ids = $currentproduct->getCategoryIds(); /*will return category ids array*/
+var_dump($category_ids);
+$categoryId = $category_ids[0];
+$category= $objectManager->get('Magento\Catalog\Model\CategoryFactory')->create()->load($categoryId);
+$collection = $objectManager->get('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory')->create();
+$collection->addAttributeToSelect('*');
+$collection->addCategoryFilter($category);
+$collection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+$collection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+$collection->setPageSize(5);
+
+
+?>
+<h2>Similar Products</h2>
+<?php
+foreach ($collection as $product) {
+    echo $product->getName() . ' - ' . $product->getProductUrl() . '<br />';
+}
+
+?>

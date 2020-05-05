@@ -1,0 +1,173 @@
+//
+//  Toggle Component
+//  _________________________
+
+//
+//  Common
+//  --------------------------
+
+& when (@media-common = true) {
+    .ammenu-menu-wrapper {
+        .ammenu-icon:after,
+        .ammenu-icon.-small.-down:before,
+        .ammenu-submenu.-collapsed + .ammenu-toggle .ammenu-icon:before {
+            background-color: @ammenu__color__black;
+            transform: rotate(45deg);
+        }
+
+        .ammenu-icon:before,
+        .ammenu-icon.-small.-down:after,
+        .ammenu-submenu.-collapsed + .ammenu-toggle .ammenu-icon:after,
+        .ammenu-submenu.-collapsed + .ammenu-link {
+            background-color: @ammenu__color__black;
+            transform: rotate(-45deg);
+        }
+
+        .ammenu-submenu.-collapsed + .ammenu-link {
+            background-color: @ammenu__color__black !important;
+        }
+    }
+
+    .ammenu-toggle {
+        & {
+            position: absolute;
+            top: 16px;
+            right: @ammenu__indent;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .ammenu-icon {
+            & {
+                position: relative;
+                display: flex;
+                align-items: center;
+                align-self: center;
+                justify-content: center;
+                padding: @ammenu__indent;
+                cursor: pointer;
+            }
+
+            &:before,
+            &:after {
+                position: absolute;
+                display: inline-block;
+                width: 12px;
+                height: 2px;
+                background: @ammenu__color__grey__dark;
+                content: '';
+            }
+
+            &:before {
+                left: 0;
+                border-radius: 0 @ammenu__indent @ammenu__indent 0;
+            }
+
+            &:after {
+                right: 0;
+                border-radius: @ammenu__indent 0 0 @ammenu__indent;
+            }
+        }
+    }
+
+    .ammenu-menu-toggle {
+        & {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            height: 100%;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        &:not(.-hamburger) {
+            display: none;
+        }
+
+        &.-hamburger.-porto {
+            & ~ .logo {
+                margin: @ammenu__indent 0 @ammenu__indent @ammenu__indent__xl * 2;
+            }
+        }
+
+        .ammenu-icon {
+            & {
+                position: relative;
+                display: block;
+                margin: 3px 0;
+                min-width: @ammenu__indent__xl;
+                width: 25px;
+                border-bottom: 1px solid;
+                border-radius: 1px;
+                transition: all .1s ease;
+            }
+
+            &:before,
+            &:after {
+                position: absolute;
+                top: 3px;
+                display: inline-block;
+                width: 12px;
+                height: 2px;
+                content: '';
+                transition: all .3s ease;
+            }
+        }
+    }
+
+    .ammenu-menu-toggle.-active {
+        .ammenu-icon:nth-of-type(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .ammenu-icon:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        .ammenu-icon:nth-of-type(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    }
+
+    .header.content [class*='nav-toggle'],
+    .header.content [class*='toggle-nav'] {
+        display: none !important;
+    }
+
+    //
+    //  Tablet +
+    //  --------------------------------------------
+
+    @media (max-width: @screen__l) {
+        .ammenu-menu-toggle:not(.-hamburger) {
+            display: flex;
+        }
+
+        .ammenu-icon.-small {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+    }
+}
+
+//
+//  Desktop
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .ammenu-menu-toggle {
+        &.-hamburger.-porto {
+            & {
+                margin: @ammenu__indent__xl 0 0 0;
+            }
+
+            & ~ .minicart-wrapper {
+                top: 16px;
+                margin: 0;
+            }
+        }
+    }
+}

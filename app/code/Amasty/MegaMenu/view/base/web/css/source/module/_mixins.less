@@ -1,0 +1,78 @@
+//
+//  Mixins
+//  _________________________
+
+.am-flex(
+    @horiz-pos: none,
+    @vert-pos: none,
+    @wrap: none
+) {
+    & {
+        display: flex;
+    }
+
+    & when not (@horiz-pos = none) {
+        justify-content: @horiz-pos;
+    }
+
+    & when not (@vert-pos = none) {
+        align-items: @vert-pos;
+    }
+
+    & when not (@wrap = none) {
+        flex-wrap: @wrap;
+    }
+}
+
+.itemWidth(@i) when (@i > 0) {
+    .ammenu-item.-col-@{i} {
+        width: ~"calc(100%/@{i})";
+    }
+    .itemWidth(@i - 1);
+}
+
+.transition(@del: .3, @style: none) {
+    & when (@style = none) {
+        transition: ~'@{del}s all ease-in';
+    }
+
+    & when not (@style = none) {
+        transition-duration: ~'@{del}s';
+        transition-property: @style;
+    }
+}
+
+.scroll(@primary_color: grey,
+        @width: 5px,
+        @secondary_color: white
+) {
+    & {
+        scrollbar-color: @primary_color @secondary_color;
+    }
+
+    &::-webkit-scrollbar {
+        width: @width;
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: @primary_color;
+        border-radius: 4px;
+        width: @width;
+        cursor: pointer;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        width: @width;
+    }
+}
+
+.icon(@icon-url: none) {
+    .am-flex(center, center);
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: @icon-url;
+    content: '';
+}

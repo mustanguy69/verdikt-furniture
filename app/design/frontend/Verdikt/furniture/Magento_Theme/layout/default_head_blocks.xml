@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <css src="css/fontawesome-5.13.0.css" rel="stylesheet" type="text/css" />
+        <!-- <css src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" src_type="url" rel="stylesheet" type="text/css" /> -->
+        <!-- <css src="css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+        <css src="css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
+        <css src="css/custom.css" rel="stylesheet" type="text/css" />
+        <script src="js/custom.js"/>
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            
+        </referenceContainer>
+    </body>
+</page>
