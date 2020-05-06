@@ -30,6 +30,6 @@ class StoreId implements CacheKeyPartProviderInterface
      */
     public function getKeyPart()
     {
-        return 'store=' . $this->storeManager->getStore()->getId();
+        return 'store=' . $this->storeManager->getStore()->getCode();
     }
 }

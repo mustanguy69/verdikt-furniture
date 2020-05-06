@@ -7,6 +7,11 @@ define([
 
     return function (Component) {
         return Component.extend({
+            initialize: function () {
+                this._super();
+		        this.selectedStore = window.checkoutConfig.storeName;
+            },
+
             /**
              * add loader block for payment
              */
@@ -22,7 +27,8 @@ define([
                 }
 
                 return this._super(newValue);
-            }
+            },
+
         });
     };
 });
