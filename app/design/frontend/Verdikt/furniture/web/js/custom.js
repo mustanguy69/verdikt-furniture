@@ -38,7 +38,7 @@ require(['jquery'], function($) {
   });
 
   $(document).ready(function() {
-    const storeRedirectURL = 'http:\/\/furniture.stage.verdikt.com.au\/stores\/store\/redirect\/';
+    const storeRedirectURL = 'stores/store/redirect/';
     $('.amlocator-link').each(function(){
       let fullLink = $(this).attr("href");
       let targetStore = fullLink.split("/").reverse().filter(Boolean)[0];
