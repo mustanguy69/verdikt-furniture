@@ -3,7 +3,7 @@ define([
     'Magento_Checkout/js/model/payment-service',
     'Amasty_Checkout/js/view/utils',
     'Magento_Customer/js/model/customer'
-], function (paymentService, viewUtils) {
+], function (paymentService, viewUtils, customer) {
     'use strict';
 
     return function (Component) {
