@@ -1,7 +1,8 @@
 // Checkout payment methods view mixin
 define([
     'Magento_Checkout/js/model/payment-service',
-    'Amasty_Checkout/js/view/utils'
+    'Amasty_Checkout/js/view/utils',
+    'Magento_Customer/js/model/customer'
 ], function (paymentService, viewUtils) {
     'use strict';
 
@@ -28,6 +29,10 @@ define([
 
                 return this._super(newValue);
             },
+
+            isLoggedIn: function () {
+                return customer.isLoggedIn();
+            }
 
         });
     };
