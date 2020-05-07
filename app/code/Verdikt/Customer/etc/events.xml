@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="customer_login">
-        <observer name="customer_login_observer" instance="Verdikt\Customer\Observer\CustomerLogin" />
+        <observer name="Verdikt_customer_login_observer" instance="Verdikt\Customer\Observer\CustomerLogin" />
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="Verdikt_checkout_submit_all_after" instance="Verdikt\Customer\Observer\CheckoutSetStore" />
     </event>
 </config>

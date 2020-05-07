@@ -1,0 +1,83 @@
+<?php
+    $customer = $block->getCustomer();
+    $locationBlock =  $block->getLayout()->createBlock('Amasty\StoreLocator\Block\Location');
+?>
+<p>Your selected Store is : <strong style="color: #eb9027" class="store-name"><?php echo $customer->getCreatedIn(); ?></strong></p>
+
+<a href="#" id="change-store">Change selected store</a>
+
+<div id="store-selector-popup">
+  <div class="bg-overlay"></div>
+  <div class="popup-content">
+    <h2>Change your selected store</h2>
+    <p>Enter your postcode and find your nearest Furniture One showroom for localised recommended retail prices</p>
+    <form method="post" action="<?php echo $block->getBaseUrl(); ?>selectedstore/customer/save" >
+      <input type="number" id="postcode-input" name="postcode" placeholder="enter postcode" />
+      <div class="search-result">
+
+      </div>
+      <input type="hidden" id="selected-store" name="selected-store">
+      <button class="f1-button" type="submit" id="select-store-submit" disabled="disabled">Submit</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+  require(['jquery', 'domReady!','https://maps.googleapis.com/maps/api/js?libraries=places&key=<?= $locationBlock->escapeHtml(
+            $locationBlock->configProvider->getApiKey()
+        ); ?>'], function($) {
+    $('#change-store').click(function(){
+      $('#store-selector-popup').show();
+      return false;
+    });
+    $('#store-selector-popup .bg-overlay').click(function(){
+      $('#store-selector-popup').hide();
+    });
+
+    $('#postcode-input').on('input', function(){
+      var geocoder = new google.maps.Geocoder();
+      if($(this).val().length > 3) {
+        var lat = '';
+        var lng = '';
+        var address = $(this).val();
+        geocoder.geocode({'address': address, componentRestrictions: {country: 'AU'}}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            lat = results[0].geometry.location.lat();
+            lng = results[0].geometry.location.lng();
+            params = {
+              lat: lat,
+              lng: lng,
+              sortByDistance: 1
+            };
+            $.ajax({
+                url: '<?php echo $block->getBaseUrl(); ?>amlocator/index/ajax/',
+                type: 'POST',
+                data: params,
+                showLoader: true
+            }).done($.proxy(function (response) {
+                response = JSON.parse(response);
+                $('.search-result').empty();
+                var html = "";
+                var i = 0;
+                $.each(response.items, function(key, value) {
+                  if(i !== 5) {
+                    html = html + '<div class="result-store" data-store="'+ value.url_key +'"><p>'+ value.name +' - ' + value.zip +'</p></div>';
+                  }
+                  i = parseInt(i) + parseInt(1);
+                });
+                $('.search-result').html(html);
+            }));
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        });
+      }
+    });
+
+    $(document).on('click', ".result-store", function() {
+      $('.result-store').removeClass('active');
+      $(this).toggleClass('active');
+      $('#selected-store').val($(this).attr('data-store'));
+      $('#select-store-submit').prop('disabled', false);
+    });
+  });
+</script>

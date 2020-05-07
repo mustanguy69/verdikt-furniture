@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+    <update handle="customer_account"/> 
+    <body> 
+        <referenceBlock name="page.main.title"> 
+            <action method="setPageTitle"> 
+                <argument translate="true" name="title" xsi:type="string">My Selected Store</argument> 
+            </action> 
+        </referenceBlock> 
+        <referenceContainer name="content"> 
+            <block class="Verdikt\Customer\Block\SelectedStore" name="my_selected_store" template="Verdikt_Customer::selectedstore.phtml"> 
+            </block> 
+        </referenceContainer> 
+    </body> 
+</page>
