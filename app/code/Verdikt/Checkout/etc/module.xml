@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @author Verdikt Team
- * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
- * @package Verdikt_Storelocator
+ * @author Tanguy BELIN
+ * @package Verdikt_Checkout
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

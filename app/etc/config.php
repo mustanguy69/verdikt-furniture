@@ -255,6 +255,7 @@ return [
         'Mageplaza_BannerSlider' => 1,
         'Temando_Shipping' => 1,
         'Verdikt_Checkout' => 1,
+        'Verdikt_Customer' => 1,
         'Verdikt_Storelocator' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
