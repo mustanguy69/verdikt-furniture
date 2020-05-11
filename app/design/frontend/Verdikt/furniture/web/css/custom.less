@@ -189,6 +189,21 @@ header.page-header{
         right: @normal-size-gap;
       }
     }
+
+    .switcher {
+      .switcher-options {
+        .header-select-store {
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+        }
+        .selected {
+          color: @feature-colour;
+        }
+      }
+    }
   }
 
   //Header main part

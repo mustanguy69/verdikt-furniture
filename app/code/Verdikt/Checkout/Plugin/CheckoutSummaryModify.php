@@ -2,6 +2,8 @@
 
 namespace Verdikt\Checkout\Plugin;
 
+use Magento\Customer\Model\SessionFactory;
+
 class CheckoutSummaryModify {
 
     /**
@@ -9,16 +11,28 @@ class CheckoutSummaryModify {
      */
     protected $storeManager;
 
+    protected $sessionFactory;
+
     /**
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      */
     public function __construct(
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        SessionFactory $sessionFactory
     ) {
         $this->storeManager = $storeManager;
+        $this->sessionFactory = $sessionFactory;
     }
     public function afterGetConfig(\Magento\Checkout\Model\DefaultConfigProvider $subject, $result) {
-        $result['storeName'] = $this->storeManager->getStore()->getName();
+
+        $customerSession = $this->sessionFactory->create();
+        if ($customerSession->isLoggedIn()) {
+             $customer = $customerSession->getCustomer();
+             $result['storeName'] = $customer->getCreatedIn();
+        } else {
+            $result['storeName'] = $this->storeManager->getStore()->getName();
+        }
+
         return $result;
     }
 }

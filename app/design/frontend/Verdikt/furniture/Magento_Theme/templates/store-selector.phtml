@@ -19,7 +19,7 @@
   require(['jquery', 'domReady!','https://maps.googleapis.com/maps/api/js?libraries=places&key=<?= $block->escapeHtml(
             $block->configProvider->getApiKey()
         ); ?>'], function($) {
-    $('.show-price-link').click(function(){
+    $('.show-price-link, .header-select-store').click(function(){
       $('#store-selector-popup').show();
       return false;
     });
