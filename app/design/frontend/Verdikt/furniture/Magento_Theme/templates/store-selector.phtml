@@ -1,5 +1,5 @@
 <?php
-  $block= $block->getLayout()->createBlock('Amasty\Storelocator\Block\Location');
+  $block = $block->getLayout()->createBlock('Amasty\Storelocator\Block\Location');
 ?>
 <div id="store-selector-popup">
   <div class="bg-overlay"></div>
@@ -70,8 +70,8 @@
     $(document).on('click', ".result-store", function() {
       $('.result-store').removeClass('active');
       $(this).toggleClass('active');
-      $('#select-store').prop("disabled", false).attr('data-post', '{"action":"stores/store/redirect/","data":{"___store":"'+ $(this).attr('data-store') +'","___from_store":"default"}}');
+      $('#select-store').prop("disabled", false).attr('data-post', '{"action":"<?php echo $block->getBaseUrl(); ?>/stores/store/redirect/","data":{"___store":"'+ $(this).attr('data-store') +'","___from_store":"default"}}');
     });
   });
 </script>
-<a href="#" data-post='{"action":"stores/store/redirect/","data":{"___store":"default","___from_store":"default"}}'>back to default store</a>
+<a href="#" data-post='{"action":"<?php echo $block->getBaseUrl(); ?>/stores/store/redirect/","data":{"___store":"default","___from_store":"default"}}'>back to default store</a>
