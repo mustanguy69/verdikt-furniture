@@ -38,14 +38,25 @@ require(['jquery'], function($) {
   });
 
   $(document).ready(function() {
-    const storeRedirectURL = 'stores/store/redirect/';
-    $('.amlocator-link').each(function(){
-      let fullLink = $(this).attr("href");
-      let targetStore = fullLink.split("/").reverse().filter(Boolean)[0];
-      let data = { "___store": targetStore, "___from_store": "default" };
-      let mypostData = { "action": storeRedirectURL, "data": data};
-      let attrData = JSON.stringify(mypostData);
-      $(this).attr("data-post", attrData);
-    });
-  });  
+    $('#search_mini_form .label').off().click(function(){
+      if ( $(window).width() >= 1280 & $(window).width() <= 1500 ) {
+        $(this).parents('.header.content').toggleClass('search-active');
+        $(this).parents('#search_mini_form').find('.control').toggle();
+        $(this).parents('#search_mini_form').find('.actions').toggle();
+      }
+    });    
+  });
+
+
+  // $(document).ready(function() {
+  //   const storeRedirectURL = 'stores/store/redirect/';
+  //   $('.amlocator-link').each(function(){
+  //     let fullLink = $(this).attr("href");
+  //     let targetStore = fullLink.split("/").reverse().filter(Boolean)[0];
+  //     let data = { "___store": targetStore, "___from_store": "default" };
+  //     let mypostData = { "action": storeRedirectURL, "data": data};
+  //     let attrData = JSON.stringify(mypostData);
+  //     $(this).attr("data-post", attrData);
+  //   });
+  // });  
 });

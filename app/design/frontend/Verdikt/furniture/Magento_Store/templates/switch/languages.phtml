@@ -16,7 +16,13 @@
                 $storeID       = $storeManager->getStore()->getStoreId(); 
                 $storeName     = $storeManager->getStore()->getName();
             ?>
-           <a href="#" class="header-select-store">Your selected store is : <span class="selected"><?php echo $storeName; ?></span></a>
+           <a href="#" class="header-select-store">Your store is : <span class="selected"><?php echo $storeName; ?></span></a>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language">
+        <div class="actions dropdown options switcher-options">
+           <a href="#" class="header-select-store">Please select your store.</a>
         </div>
     </div>
 <?php endif; ?>

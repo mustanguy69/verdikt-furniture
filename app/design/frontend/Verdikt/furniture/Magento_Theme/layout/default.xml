@@ -7,10 +7,12 @@
 -->
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
   <body>
+    <referenceBlock name="store.settings" remove="true" />
     <referenceContainer name="footer-container">
       <referenceBlock name="footer_links" remove="true"/>
       <referenceBlock name="form.subscribe" remove="true"/>
       <referenceBlock name="copyright" remove="true"/>
+      <referenceBlock name="store_switcher" remove="true"/>
     </referenceContainer>
     <referenceContainer name="header.panel.wrapper" >
       <container name="header.topmenu" label="Header Top Menu" htmlClass="header-topmenu" htmlTag="div" before="-" ></container>

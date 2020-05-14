@@ -11,8 +11,9 @@
       <div class="search-result">
 
       </div>
-      <button class="f1-button" type="button" id="select-store" disabled="disabled">Show prices</button>
+      <button class="f1-button" type="button" id="select-store" >Show prices</button>
     </form>
+    <a href="#" class="close-btn">X</a>
   </div>
 </div>
 <script type="text/javascript">
@@ -25,6 +26,10 @@
     });
     $('#store-selector-popup .bg-overlay').click(function(){
       $('#store-selector-popup').hide();
+    });
+    $('#store-selector-popup .close-btn').click(function(){
+      $('#store-selector-popup').hide();
+      return false;
     });
 
     $('#postcode').on('input', function(){
