@@ -33,13 +33,14 @@ class CheckoutSetStore implements ObserverInterface
         $quote = $observer->getQuote();
         $orderStoreName = $order->getStore()->getName();
         $orderStoreId = $order->getStore()->getId();
-
-        $customer = $this->customerRepositoryInterface->getById($order->getCustomerId());
-        $customer->setStoreId($orderStoreId);
-        $customer->setCreatedIn($orderStoreName);
-        $this->customerRepositoryInterface->save($customer);
-        // Do whatever you want here
-
+        
+        if($order->getCustomerId()) {
+            $customer = $this->customerRepositoryInterface->getById($order->getCustomerId());
+            $customer->setStoreId($orderStoreId);
+            $customer->setCreatedIn($orderStoreName);
+            $this->customerRepositoryInterface->save($customer);
+        }
+    
         return $this;
     }
 }

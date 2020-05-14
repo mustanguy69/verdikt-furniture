@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Tanguy BELIN
+ * @package Verdikt_CatalogFile
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Verdikt_CatalogFile::main"
+             title="Catalog PDF"
+             module="Verdikt_CatalogFile"
+             parent="Magento_Backend::content"
+             sortOrder="200"
+             resource="Verdikt_CatalogFile::main"
+        />
+
+        <add id="Verdikt_CatalogFile::files"
+             title="Manage Files"
+             sortOrder="10"
+             module="Verdikt_CatalogFile"
+             parent="Verdikt_CatalogFile::main"
+             action="verdikt_catalogfile/files/index"
+             resource="Verdikt_CatalogFile::files"
+        />
+    </menu>
+</config>

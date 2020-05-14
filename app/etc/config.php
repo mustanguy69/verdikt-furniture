@@ -259,6 +259,7 @@ return [
         'Mageplaza_BannerSlider' => 1,
         'Mageplaza_Smtp' => 1,
         'Temando_Shipping' => 1,
+        'Verdikt_CatalogFile' => 1,
         'Verdikt_Checkout' => 1,
         'Verdikt_Customer' => 0,
         'Verdikt_Storelocator' => 1,
