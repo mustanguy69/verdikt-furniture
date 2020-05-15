@@ -178,6 +178,10 @@ div.swatch-option{
   }
 }
 
+.shipping .price,
+.shipping .amount{
+  display: none;
+}
 
 //Header style
 header.page-header{
@@ -532,7 +536,7 @@ header.page-header{
         }
       }
       @media (max-width: 767px){
-        background-size: auto 100%;
+        background-size: auto 100% !important;
       }
     }
   }
@@ -577,7 +581,7 @@ header.page-header{
             font-size: 18px;
           }
           p{
-            display: none;
+            margin-bottom: 0;
           }
         }
       }
@@ -601,6 +605,9 @@ header.page-header{
   }
   #home-feature-products{
     padding: @normal-size-gap;
+    @media (max-width: 768px){
+    	padding: 40px 20px;
+    }
     h2{
       font-size: 34px;
       text-transform: uppercase;
@@ -627,6 +634,9 @@ header.page-header{
       padding-top: @normal-size-gap;
       padding-bottom: @normal-size-gap;
       padding-right: @normal-size-gap;
+      @media (max-width: 768px){
+        padding-right: 0;
+      }
       img{
         margin-bottom: @normal-size-gap;
       }
@@ -646,6 +656,9 @@ header.page-header{
   #home-gallery{
     padding: @normal-size-gap;
     padding-bottom: 0;
+    @media (max-width: 768px){
+    	padding: 40px 20px 0;
+    }
     h2{
       font-size: 34px;
       text-transform: uppercase;
@@ -663,6 +676,9 @@ header.page-header{
       margin-bottom: 10px;
       padding-left: 5px;
       padding-right: 5px;
+    }
+    img{
+      width: 100%;
     }
   }
   #home-social{
@@ -773,6 +789,16 @@ header.page-header{
     }
     .product-info-price{
       position: relative;
+      @media (max-width: 768px){
+        .price-box{
+          display: block;
+          width: 100%;
+        }
+        .product-info-stock-sku{
+          display: block;
+          width: 100%;
+        }
+      }
     }
     span[data-role="amhideprice-hide-button"] ~ .product-info-stock-sku{
       position: absolute;
@@ -1246,6 +1272,7 @@ div.amlocator-main-container{
     .opc-wrapper.am-opc-wrapper label.label{
       word-break: normal;
     }
+
   }
   .block-search{
     display: none;
@@ -1308,5 +1335,12 @@ div.amlocator-main-container{
         }
       }
     }
+  }
+}
+
+//thank you page
+.checkout-onepage-success{
+  tr.shipping{
+    display: none !important;
   }
 }
