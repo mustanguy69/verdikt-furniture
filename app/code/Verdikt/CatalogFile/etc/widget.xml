@@ -3,5 +3,13 @@
 	<widget class="Verdikt\CatalogFile\Block\Widget\Files" id="verdikt_catalogfile_widget">
 		<label>Catalog PDF</label>
 		<description>Catalog PDF</description>
+		<parameters>
+            <parameter name="image" xsi:type="text" required="false" visible="true" sort_order="10">
+                <label>Image URL (i.e : web_images/catalogue.jpg)</label>
+            </parameter>
+			<parameter name="class" xsi:type="text" required="false" visible="true" sort_order="20">
+                <label>Class CSS</label>
+            </parameter>
+		</parameters>
 	</widget>
 </widgets>
