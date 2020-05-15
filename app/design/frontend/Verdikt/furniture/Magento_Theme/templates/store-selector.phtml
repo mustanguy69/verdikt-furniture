@@ -22,6 +22,7 @@
         ); ?>'], function($) {
     $('.show-price-link, .header-select-store').click(function(){
       $('#store-selector-popup').show();
+      localStorage.setItem("catalog", false); 
       return false;
     });
     $('#store-selector-popup .bg-overlay').click(function(){
@@ -66,7 +67,7 @@
                 $('.search-result').html(html);
             }));
           } else {
-            alert("Geocode was not successful for the following reason: " + status);
+            alert("No store found for this postcode, please retry");
           }
         });
       }
@@ -76,6 +77,7 @@
       $('.result-store').removeClass('active');
       $(this).toggleClass('active');
       $('#select-store').prop("disabled", false).attr('data-post', '{"action":"<?php echo $block->getBaseUrl(); ?>/stores/store/redirect/","data":{"___store":"'+ $(this).attr('data-store') +'","___from_store":"default"}}');
+      
     });
   });
 </script>

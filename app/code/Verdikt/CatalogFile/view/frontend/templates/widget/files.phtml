@@ -1,6 +1,33 @@
-<?php $file = $block->getFileByWebsite(); ?>
+<?php 
+    $file = $block->getFileByWebsiteId(); 
+    $websiteId = $block->getWebsiteId();
+    $blockLocation = $block->getLayout()->createBlock('Amasty\Storelocator\Block\Location');
+?>
 <div class="col-md-6">
-    <a href="<?php echo $block->getMediaBaseUrl($file->getFile()); ?>" target="_blank">
+    <a href="<?php echo $block->getMediaBaseUrl($file->getFile()); ?>" class="show-catalog" target="_blank">
         <img src="<?php echo $block->getMediaBaseUrl('web_images/catalogue.jpg'); ?>" alt="">
     </a>
 </div>
+
+    <script type="text/javascript">
+        require(['jquery', 'domReady!'], function($) {
+            <?php if($websiteId == 1) { ?>
+                $('.show-catalog').click(function(e){
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    $('#store-selector-popup').show();
+                    $('#store-selector-popup .popup-content h2').text('LOCATE YOUR STORE TO VIEW THE CATALOG');
+                    localStorage.setItem("catalog", true); 
+                    
+                    return false;
+                });
+            <?php } else { ?>
+                if(localStorage.getItem("catalog") == 'true') {
+                    localStorage.setItem("catalog", false); 
+                    $('.show-catalog').get(0).click();
+                } 
+                    
+            <?php } ?>
+        });
+    </script>
+
