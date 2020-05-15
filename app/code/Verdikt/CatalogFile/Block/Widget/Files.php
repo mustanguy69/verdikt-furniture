@@ -38,7 +38,11 @@ class Files extends Template implements BlockInterface
         return $this->_storeManager->getStore()->getWebsiteId();
     }
 
-    function getFileByWebsite() 
+    public function getWebsiteIdByStore($name) {
+        return $this->_storeManager->getStore($name)->getWebsiteId();
+    }
+
+    function getFileByWebsiteId() 
     {
         $websiteId = $this->getWebsiteId();
         $file = $this->_filesFactory->create();
@@ -48,7 +52,7 @@ class Files extends Template implements BlockInterface
         
         return $file->getFirstItem();
     }
-    
+
     function getMediaBaseUrl($url) 
     {
 		$om = \Magento\Framework\App\ObjectManager::getInstance();
