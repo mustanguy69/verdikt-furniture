@@ -38,8 +38,9 @@
       if($(this).val().length > 3) {
         var lat = '';
         var lng = '';
-        var address = $(this).val();
-        geocoder.geocode({'address': address, componentRestrictions: {country: 'AU'}}, function(results, status) {
+        var address = "Postcode " + $(this).val() + " Australia";
+
+        geocoder.geocode({'address': address, region: "AU"}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             lat = results[0].geometry.location.lat();
             lng = results[0].geometry.location.lng();
@@ -72,6 +73,7 @@
         });
       }
     });
+
 
     $(document).on('click', ".result-store", function() {
       $('.result-store').removeClass('active');
